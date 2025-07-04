@@ -1,12 +1,17 @@
 import React from "react";
 import { Outlet } from "react-router";
 import Header from "../Components/Header";
+import LetestsNews from "../Components/LetestsNews";
 
 const HomeLayouts = () => {
   return (
     <div>
       <header>
         <Header></Header>
+
+        <section className="max-w-11/12 mx-auto my-7">
+          <LetestsNews></LetestsNews>
+        </section>
       </header>
 
       <main>
