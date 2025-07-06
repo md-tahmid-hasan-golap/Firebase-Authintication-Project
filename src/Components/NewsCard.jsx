@@ -8,6 +8,7 @@ const NewsCard = ({ news }) => {
     news;
 
   // Format the published date
+  //   yes
   const publishedDate = new Date(author.published_date).toLocaleDateString();
 
   return (
