@@ -1,11 +1,20 @@
 import { FaEye, FaRegBookmark } from "react-icons/fa";
 import { IoShareSocialOutline } from "react-icons/io5";
 import { MdTrendingUp } from "react-icons/md";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
   // Destructure the object to simplify access
-  const { title, rating, total_view, author, thumbnail_url, details, tags } =
-    news;
+  const {
+    id,
+    title,
+    rating,
+    total_view,
+    author,
+    thumbnail_url,
+    details,
+    tags,
+  } = news;
 
   // Format the published date
   //   yes
@@ -78,7 +87,9 @@ const NewsCard = ({ news }) => {
 
         {/* Action Button */}
         <div className="mt-4">
-          <button className="btn btn-primary btn-sm">Read More</button>
+          <Link to={`/news-details/${id}`} className="btn btn-primary btn-sm">
+            Read More
+          </Link>
         </div>
       </div>
     </div>

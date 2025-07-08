@@ -4,7 +4,17 @@ import userIcon from "../assets/user.png";
 import { AuthContext } from "../provider/FirebaseAuthProvider";
 
 const Navbar = () => {
-  const { user } = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        alert("you logged out ");
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error);
+      });
+  };
   return (
     <div className="max-w-11/12 mx-auto flex justify-between items-center">
       <div className="">{user && user.email}</div>
@@ -15,9 +25,15 @@ const Navbar = () => {
       </div>
       <div className="login_btn flex items-center gap-5">
         <img src={userIcon} alt="" />
-        <Link to="/auth/login" className="btn btn-primary px-10">
-          Login
-        </Link>
+        {user ? (
+          <button onClick={handleLogout} className="btn btn-primary px-10">
+            LogOut
+          </button>
+        ) : (
+          <Link to="/auth/login" className="btn btn-primary px-10">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
