@@ -13,12 +13,15 @@ const auth = getAuth(app);
 
 const FirebaseAuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(user);
+  const [loading, setLoading] = useState(true);
+  console.log(loading, user);
 
   const creatUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const signIn = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
@@ -27,6 +30,7 @@ const FirebaseAuthProvider = ({ children }) => {
   useEffect(() => {
     const unSuscribe = onAuthStateChanged(auth, (crueentUser) => {
       setUser(crueentUser);
+      setLoading(false);
     });
     return () => {
       unSuscribe();
@@ -38,6 +42,8 @@ const FirebaseAuthProvider = ({ children }) => {
     creatUser,
     logOut,
     signIn,
+    loading,
+    setLoading,
   };
   return <AuthContext value={authData}>{children}</AuthContext>;
 };
